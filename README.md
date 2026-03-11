@@ -19,13 +19,13 @@ Diseño e implementación del sistema multidimensional para **Ceuta Connect**, e
 ├── /docs                              ← Diagramas ER y documentación
 ├── /sql
 │   ├── seeder.sql                     ← Script maestro (ejecuta todo en orden)
-│   ├── /ddl-schemes                   ← Definición de tablas por esquema
+│   ├── /ddl-schemas                   ← Definición de tablas por esquema
 │   │   ├── 01_ddl_ventas.sql
 │   │   ├── 02_ddl_rrhh.sql
 │   │   ├── 03_ddl_inventario.sql
 │   │   ├── 04_ddl_logistica.sql
 │   │   └── 05_ddl_finanzas.sql
-│   └── /dml-schemes                   ← Datos sintéticos por esquema
+│   └── /dml-schemas                   ← Datos sintéticos por esquema
 │       ├── 01_dml_ventas.sql
 │       ├── 02_dml_rrhh.sql
 │       ├── 03_dmL_inventario.sql
@@ -115,17 +115,17 @@ El script crea los esquemas, ejecuta todos los DDL en orden y pobla las tablas c
 
 ```bash
 # DDL
-psql -U postgres -d ceutaconnect -f sql/ddl-schemes/01_ddl_ventas.sql
-psql -U postgres -d ceutaconnect -f sql/ddl-schemes/02_ddl_rrhh.sql
-psql -U postgres -d ceutaconnect -f sql/ddl-schemes/03_ddl_inventario.sql
-psql -U postgres -d ceutaconnect -f sql/ddl-schemes/04_ddl_logistica.sql
-psql -U postgres -d ceutaconnect -f sql/ddl-schemes/05_ddl_finanzas.sql
+psql -U postgres -d ceutaconnect -f sql/ddl-schemas/01_ddl_ventas.sql
+psql -U postgres -d ceutaconnect -f sql/ddl-schemas/02_ddl_rrhh.sql
+psql -U postgres -d ceutaconnect -f sql/ddl-schemas/03_ddl_inventario.sql
+psql -U postgres -d ceutaconnect -f sql/ddl-schemas/04_ddl_logistica.sql
+psql -U postgres -d ceutaconnect -f sql/ddl-schemas/05_ddl_finanzas.sql
 
 # DML
-psql -U postgres -d ceutaconnect -f sql/dml-schemes/01_dml_ventas.sql
-psql -U postgres -d ceutaconnect -f sql/dml-schemes/02_dml_rrhh.sql
-psql -U postgres -d ceutaconnect -f sql/dml-schemes/03_dmL_inventario.sql
-psql -U postgres -d ceutaconnect -f sql/dml-schemes/04_dml_logistica.sql
-psql -U postgres -d ceutaconnect -f sql/dml-schemes/05_dml_finanzas.sql
-psql -U postgres -d ceutaconnect -f sql/dml-schemes/06_dml_transacciones.sql
+psql -U postgres -d ceutaconnect -f sql/dml-schemas/01_dml_ventas.sql
+psql -U postgres -d ceutaconnect -f sql/dml-schemas/02_dml_rrhh.sql
+psql -U postgres -d ceutaconnect -f sql/dml-schemas/03_dmL_inventario.sql
+psql -U postgres -d ceutaconnect -f sql/dml-schemas/04_dml_logistica.sql
+psql -U postgres -d ceutaconnect -f sql/dml-schemas/05_dml_finanzas.sql
+psql -U postgres -d ceutaconnect -f sql/dml-schemas/06_dml_transacciones.sql
 ```
