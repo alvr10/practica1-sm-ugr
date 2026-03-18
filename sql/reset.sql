@@ -1,24 +1,25 @@
 -- ============================================================
--- RESET: Ceuta Connect – Limpieza completa de esquemas OLTP
+-- RESET: Ceuta Connect — Limpieza completa OLTP + OLAP
 --
--- ⚠️  ADVERTENCIA: Este script elimina TODOS los datos y tablas.
+-- ⚠️  ADVERTENCIA: Elimina TODOS los datos, tablas y esquemas.
 --     Úsalo solo en entorno de desarrollo.
 --
--- Uso:
+-- Flujo de trabajo habitual:
 --   psql -U postgres -d ceutaconnect -f sql/reset.sql
+--   psql -U postgres -d ceutaconnect -f sql/schema.sql
 --   psql -U postgres -d ceutaconnect -f sql/seeder.sql
 -- ============================================================
 
--- CASCADE elimina tablas, índices, constraints y FK en cadena
-DROP SCHEMA IF EXISTS oltp_finanzas   CASCADE;
-DROP SCHEMA IF EXISTS oltp_logistica  CASCADE;
-DROP SCHEMA IF EXISTS oltp_inventario CASCADE;
-DROP SCHEMA IF EXISTS oltp_rrhh       CASCADE;
-DROP SCHEMA IF EXISTS oltp_ventas     CASCADE;
+-- Orden inverso de dependencias: OLAP primero, luego OLTP
+DROP SCHEMA IF EXISTS olap              CASCADE;
+DROP SCHEMA IF EXISTS oltp_finanzas     CASCADE;
+DROP SCHEMA IF EXISTS oltp_logistica    CASCADE;
+DROP SCHEMA IF EXISTS oltp_inventario   CASCADE;
+DROP SCHEMA IF EXISTS oltp_rrhh         CASCADE;
+DROP SCHEMA IF EXISTS oltp_ventas       CASCADE;
 
--- Confirmación
 DO $$
 BEGIN
-    RAISE NOTICE '✔ Reset completado. Ejecuta seeder.sql para repoblar.';
+    RAISE NOTICE '✔ Reset completado. Ejecuta schema.sql y luego seeder.sql para repoblar.';
 END;
 $$;
