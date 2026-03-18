@@ -1,0 +1,37 @@
+-- ============================================================
+-- BUS MATRIX - Ceuta Connect Data Warehouse
+-- ============================================================
+-- Documento de arquitectura: Dimensiones Conformadas por Proceso
+-- ============================================================
+--
+-- LEYENDA: X = Dimensión participa en el proceso de negocio
+--
+-- +--------------------+----------+------------+-----------+-----------+----------+
+-- | DIMENSIÓN          | VENTAS   | INVENTARIO | LOGÍSTICA | FINANZAS  | RRHH     |
+-- +--------------------+----------+------------+-----------+-----------+----------+
+-- | dim_fecha          |    X     |     X      |     X     |     X     |    X     |
+-- | dim_producto       |    X     |     X      |           |           |          |
+-- | dim_cliente        |    X     |            |     X     |     X     |          |
+-- | dim_empleado       |    X     |            |           |           |    X     |
+-- | dim_proveedor      |          |     X      |           |           |          |
+-- | dim_transportista  |          |            |     X     |           |          |
+-- | dim_canal          |    X     |            |           |           |          |
+-- | dim_ubicacion      |          |     X      |     X     |           |          |
+-- | dim_impuesto       |    X     |            |           |     X     |          |
+-- +--------------------+----------+------------+-----------+-----------+----------+
+--
+-- TABLAS DE HECHOS IDENTIFICADAS:
+--   fact_ventas_linea   → Proceso: Detalle de venta (línea de pedido)
+--   fact_inventario     → Proceso: Movimientos de stock
+--   fact_envios         → Proceso: Envíos y logística
+--   fact_pagos          → Proceso: Cobros y pagos
+--   fact_comisiones     → Proceso: Comisiones comerciales
+--
+-- DIMENSIONES CONFORMADAS (compartidas entre ≥ 2 procesos):
+--   dim_fecha        → Todas las tablas de hechos la referencian
+--   dim_producto     → fact_ventas_linea + fact_inventario
+--   dim_cliente      → fact_ventas_linea + fact_envios + fact_pagos
+--   dim_empleado     → fact_ventas_linea + fact_comisiones
+-- ============================================================
+
+CREATE SCHEMA IF NOT EXISTS olap;
