@@ -1,0 +1,49 @@
+# Python virtual environment
+venv/
+.venv/
+ENV/
+env/
+
+# Python cache / artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Postgres/SQL
+*.log
+*.sql.bak
+*.sql.gz
+*.sql.zip
+*.sqlite
+
+# OS and IDE files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project artifacts
+/tmp/
+*.pdf
+# (only ignore if you already generated your report and don't want it in git)
+# practica1_riosrodriguez.pdf
