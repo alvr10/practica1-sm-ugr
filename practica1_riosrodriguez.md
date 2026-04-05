@@ -968,12 +968,3 @@ A lo largo de los cuatro hitos de esta práctica se ha diseñado, implementado y
 * **El ETL debe ser idempotente desde el primer día.** Usar `ON CONFLICT ... DO NOTHING` y los procedimientos SCD2 garantiza que el script puede re-ejecutarse sin duplicar datos, lo que simplifica enormemente el mantenimiento.
 * **Snowflake no siempre es mejor.** En nuestro caso con 8 categorías y 50 productos, la normalización genera JOINs adicionales sin beneficios apreciables de espacio. El copo de nieve cobra sentido con jerarquías profundas (>1000 nodos) y frecuentes actualizaciones de atributos descriptivos.
 * **El volumen importa para el benchmarking.** Con ~100 filas de hechos, las diferencias de rendimiento son porcentualmente grandes pero absolutamente pequeñas (pocos milisegundos). En un entorno real con millones de filas, estas diferencias se traducirían en minutos de espera, validando completamente la inversión en el DW.
-
-## Trabajo futuro (Práctica 2)
-
-En la práctica siguiente, el sistema está listo para:
-
-* **Staging area y limpieza de datos:** implementar un área de staging intermedia con validaciones de calidad (duplicados, nulos, rangos) antes de insertar en el DW.
-* **SCD Tipo 2 en producción:** activar el versionado completo cargando cambios reales en dimensiones (cambio de provincia de cliente, actualización de precio de producto) y verificando la trazabilidad histórica en los hechos.
-* **ETL incremental:** usar la tabla `etl_control` del script `etl_incremental.sql` para cargar solo los registros nuevos o modificados desde la última ejecución, reduciendo el tiempo de ventana de carga nocturna.
-* **Visualización en herramientas BI:** conectar el esquema `olap` a herramientas como Metabase, Apache Superset o Power BI para crear dashboards interactivos sobre las 5 preguntas de negocio.
